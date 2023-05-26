@@ -9,8 +9,8 @@ public class Car : MonoBehaviour
     public Rigidbody2D rb;
     public SpriteRenderer sr;
 
-    private float verticalInput;
-    private float horizontalInput;
+    private float vertical;
+    private float horizontal;
 
 
     // Start is called before the first frame update
@@ -22,7 +22,15 @@ public class Car : MonoBehaviour
 
    
     void Update()
-    {
+    {   //Get axes
+        vertical = Input.GetAxisRaw("Vertical");
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        //Rotate
+        gameObject.transform.Rotate(Vector3.back, horizontal * turnSpeed * Time.deltaTime);
+
+        //Move
+        gameObject.transform.Translate(Vector3.up * vertical * moveSpeed * Time.deltaTime);
 
         /*
          * FINAL EXAM #1
